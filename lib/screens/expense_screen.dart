@@ -28,7 +28,7 @@
         body: SafeArea(child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: Column(
-           // mainAxisAlignment: MainAxisAlignment.center,
+           mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
                 child: Image.asset('assets/images/log_background.png',),
