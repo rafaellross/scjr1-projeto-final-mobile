@@ -1,4 +1,5 @@
   import 'package:flutter/material.dart';
+import 'package:scjr1_projeto_final_mobile/screens/list_screen.dart';
 
   import '../widgets/rounded_button.dart';
   import '../widgets/rounded_text_field.dart';
@@ -61,7 +62,10 @@
               ),
               const SizedBox(height: 10),
               RoundedButton(
-                text: 'Salvar', onPressed: () {  },
+                text: 'Salvar', onPressed: () {
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const ListScreen()));
+
+              },
 
               ),
             ],

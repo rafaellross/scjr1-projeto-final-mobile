@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:scjr1_projeto_final_mobile/screens/expense_screen.dart';
-
+import 'package:flutter/material.dart';
 import '../widgets/rounded_button.dart';
 import '../widgets/rounded_text_field.dart';
+import 'list_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   static const String id = 'login';
@@ -39,7 +39,7 @@ class LoginScreen extends StatelessWidget {
                     const SizedBox(height: 32.0),
                     RoundedButton(
                       text: 'Entrar', onPressed: () {
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const ExpenseScreen()));
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const ListScreen()));
                     },
                       // onPressed: () => makeLogin(
                       //   context,
