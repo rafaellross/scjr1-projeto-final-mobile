@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:scjr1_projeto_final_mobile/screens/expense_screen.dart';
 
 import '../widgets/rounded_button.dart';
 import '../widgets/rounded_text_field.dart';
@@ -19,7 +20,6 @@ class LoginScreen extends StatelessWidget {
       backgroundColor: Colors.blueAccent,
       body: SafeArea(
         child: Padding(
-        //  padding: const EdgeInsets.all(30),
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -38,12 +38,14 @@ class LoginScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 32.0),
                     RoundedButton(
-                      text: 'Entrar',
-                      onPressed: () => makeLogin(
-                        context,
-                        userEmail,
-                        userPassword,
-                      ),
+                      text: 'Entrar', onPressed: () {
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const ExpenseScreen()));
+                    },
+                      // onPressed: () => makeLogin(
+                      //   context,
+                      //   userEmail,
+                      //   userPassword,
+                      // ),
                     ),
                   ],
           ),
@@ -53,6 +55,8 @@ class LoginScreen extends StatelessWidget {
   }
 
   void makeLogin(BuildContext context, String email, String password) async {
+
+
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,

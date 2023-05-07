@@ -18,6 +18,7 @@ class RoundedTextField extends StatelessWidget {
         labelText: hint,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(1000),
+
         ),
       ),
     );

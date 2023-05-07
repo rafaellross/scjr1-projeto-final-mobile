@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'home_screen.dart';
 import 'login_screen.dart';
 
 
@@ -29,7 +28,7 @@ class _SplashScreenState2 extends State<SplashScreen2> {
     if (user != null) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const HomeScreen()),
+        MaterialPageRoute(builder: (context) => const LoginScreen()),
       );
     } else {
       Navigator.pushReplacement(
