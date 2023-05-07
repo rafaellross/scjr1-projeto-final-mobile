@@ -15,13 +15,13 @@ class RoundedButton extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       child: Material(
-        color: Theme.of(context).primaryColorLight,
+        color:Colors.deepOrange,
         elevation: 4,
         borderRadius: const BorderRadius.all(Radius.circular(1000)),
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Center(
-            child: Text(text),
+            child: Text(text,style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white), ),
           ),
         ),
       ),

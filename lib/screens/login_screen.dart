@@ -9,37 +9,43 @@ class LoginScreen extends StatelessWidget {
 
   const LoginScreen({Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     var userEmail = '';
     var userPassword = '';
 
     return Scaffold(
+      backgroundColor: Colors.blueAccent,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+        //  padding: const EdgeInsets.all(30),
+          padding: EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              RoundedTextField(
-                hint: 'Email',
-                onTextChanged: (newEmail) => userEmail = newEmail,
+              Container(
+                child: Image.asset('assets/images/log_background.png',),
               ),
-              const SizedBox(height: 16),
-              RoundedTextField(
-                hint: 'Senha',
-                onTextChanged: (newPassword) => userPassword = newPassword,
-              ),
-              const SizedBox(height: 32.0),
-              RoundedButton(
-                text: 'Entrar',
-                onPressed: () => makeLogin(
-                  context,
-                  userEmail,
-                  userPassword,
-                ),
-              ),
-            ],
+                    RoundedTextField(
+                      hint: 'Email',
+                      onTextChanged: (newEmail) => userEmail = newEmail,
+                    ),
+                    const SizedBox(height: 20),
+                    RoundedTextField(
+                      hint: 'Senha',
+                      onTextChanged: (newPassword) => userPassword = newPassword,
+                    ),
+                    const SizedBox(height: 32.0),
+                    RoundedButton(
+                      text: 'Entrar',
+                      onPressed: () => makeLogin(
+                        context,
+                        userEmail,
+                        userPassword,
+                      ),
+                    ),
+                  ],
           ),
         ),
       ),
