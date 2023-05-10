@@ -13,13 +13,21 @@ class RoundedTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      style: const TextStyle(
+        color: Colors.white,
+      ),
+
       onChanged: onTextChanged,
       decoration: InputDecoration(
         labelText: hint,
+        labelStyle: const TextStyle(
+          color: Colors.white
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(1000),
 
         ),
+
       ),
     );
   }

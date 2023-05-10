@@ -11,9 +11,9 @@ class ExpenseModel {
   });
 
   final String expenseName;
-  final Double expenseAmount;
+  final double expenseAmount;
   final String expenseCurrency;
   final String expenseNewCurrency;
-  final Double expenseConvertedAmount;
+  final double expenseConvertedAmount;
 
 }
