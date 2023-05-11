@@ -46,40 +46,41 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDEQI6RyIGGvYyKesvY3qFQBu10yqH2p5Q',
-    appId: '1:440218767357:web:19df535164e5b0befcd394',
-    messagingSenderId: '440218767357',
-    projectId: 'scjr1-final-mobile',
-    authDomain: 'scjr1-final-mobile.firebaseapp.com',
-    storageBucket: 'scjr1-final-mobile.appspot.com',
-    measurementId: 'G-FX5FPDWZMQ',
+
+    apiKey: 'AIzaSyConCN0P-EQyWTeLT6oxJYNT9qKkmLudc8',
+    appId: '1:760979832619:web:d9c2015c209332f47a8f6e',
+    messagingSenderId: '760979832619',
+    projectId: 'scjr1-mobile-final',
+    authDomain: 'scjr1-mobile-final.firebaseapp.com',
+    storageBucket: 'scjr1-mobile-final.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyA7GZfz3hw3YC_wSxob3OQi69ZVAa5a6qU',
-    appId: '1:440218767357:android:d42e8a0d2904aa42fcd394',
-    messagingSenderId: '440218767357',
-    projectId: 'scjr1-final-mobile',
-    storageBucket: 'scjr1-final-mobile.appspot.com',
+    apiKey: 'AIzaSyAQ62jpjc7xuDpmpMm3EQOV2gc9cPrqInY',
+    appId: '1:760979832619:android:b5048045b2d453957a8f6e',
+    messagingSenderId: '760979832619',
+    projectId: 'scjr1-mobile-final',
+    storageBucket: 'scjr1-mobile-final.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyD11pQ8lkLQ5ZN9WwsGkKpPboc06e6jznM',
-    appId: '1:440218767357:ios:2308fb293ba36082fcd394',
-    messagingSenderId: '440218767357',
-    projectId: 'scjr1-final-mobile',
-    storageBucket: 'scjr1-final-mobile.appspot.com',
-    iosClientId: '440218767357-gkkinegp7jui3417nu7idsj7qcu5ctet.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAD1tC5rPHevXMdCKRpjpof34xQy9agshU',
+    appId: '1:760979832619:ios:6814f8a8a250a8f27a8f6e',
+    messagingSenderId: '760979832619',
+    projectId: 'scjr1-mobile-final',
+    storageBucket: 'scjr1-mobile-final.appspot.com',
+    iosClientId: '760979832619-2behh8jlkllmkj2chhkr988a5m91j02s.apps.googleusercontent.com',
     iosBundleId: 'br.com.fiap.scjr1ProjetoFinalMobile',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyD11pQ8lkLQ5ZN9WwsGkKpPboc06e6jznM',
-    appId: '1:440218767357:ios:2308fb293ba36082fcd394',
-    messagingSenderId: '440218767357',
-    projectId: 'scjr1-final-mobile',
-    storageBucket: 'scjr1-final-mobile.appspot.com',
-    iosClientId: '440218767357-gkkinegp7jui3417nu7idsj7qcu5ctet.apps.googleusercontent.com',
+
+    apiKey: 'AIzaSyAD1tC5rPHevXMdCKRpjpof34xQy9agshU',
+    appId: '1:760979832619:ios:6814f8a8a250a8f27a8f6e',
+    messagingSenderId: '760979832619',
+    projectId: 'scjr1-mobile-final',
+    storageBucket: 'scjr1-mobile-final.appspot.com',
+    iosClientId: '760979832619-2behh8jlkllmkj2chhkr988a5m91j02s.apps.googleusercontent.com',
     iosBundleId: 'br.com.fiap.scjr1ProjetoFinalMobile',
   );
 }

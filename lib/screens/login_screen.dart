@@ -8,7 +8,7 @@ import '../widgets/rounded_text_field.dart';
 import 'list_screen.dart';
 
 class LoginScreen extends StatelessWidget {
-  static const String id = 'login';
+  static const String id = '/login';
 
   LoginScreen({super.key});
 
@@ -31,27 +31,37 @@ class LoginScreen extends StatelessWidget {
               ),
               const Text(
                 'Login',
-                textAlign: TextAlign.center
+
+                style: TextStyle(
+                    fontSize: 32,
+                    color: Colors.white
+                ),
               ),
+              const SizedBox(height: 20),
+
               RoundedTextField(
                 hint: 'Email',
-                onTextChanged: (newEmail) => userEmail = newEmail,
+                onTextChange: (newEmail) => userEmail = newEmail,
 
               ),
               const SizedBox(height: 20),
               RoundedTextField(
                 hint: 'Senha',
-                onTextChanged: (newPassword) => userPassword = newPassword,
+                obscureText: true,
+                onTextChange: (newPassword) => userPassword = newPassword,
               ),
               const SizedBox(height: 32.0),
               RoundedButton(
-                text: 'Entrar', onPressed: () => makeLogin(context),
-                // onPressed: () => makeLogin(
-                //   context,
-                //   userEmail,
-                //   userPassword,
-                // ),
+                text: 'Entrar', onPressed: () => authenticateUser(context),
               ),
+              const SizedBox(height: 32.0),
+              RoundedButton(
+                backgroundColor: Colors.white,
+                textColor: Colors.teal,
+                text: 'Cadastrar',
+                onPressed: () => Navigator.pushNamed(context,RegisterScreen.id)
+              ),
+
             ],
           ),
         ),
@@ -59,7 +69,8 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  void makeLogin(BuildContext context) {
+
+  void authenticateUser(BuildContext context) {
     final firebaseAuth = FirebaseAuth.instance;
 
     firebaseAuth
@@ -72,11 +83,17 @@ class LoginScreen extends StatelessWidget {
         Navigator.pushReplacementNamed(context, ExpenseScreen.id);
       },
     ).onError(
-          (error, stackTrace) {
-            print(error);
-            Navigator.pushNamed(context, RegisterScreen.id);
-      },
+
+          (FirebaseAuthException error, stackTrace) {
+
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  error.message ?? 'Ops, algo errado aconteceu',
+                ),
+              ),
+            );
+        }
     );
   }
-
 }

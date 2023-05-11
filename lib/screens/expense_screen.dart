@@ -1,8 +1,10 @@
-  import 'package:flutter/material.dart';
+  import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:scjr1_projeto_final_mobile/screens/list_screen.dart';
 
   import '../widgets/rounded_button.dart';
   import '../widgets/rounded_text_field.dart';
+import 'login_screen.dart';
 
   class ExpenseScreen extends StatefulWidget {
     static const String id = '/expense_screen';
@@ -38,35 +40,38 @@ import 'package:scjr1_projeto_final_mobile/screens/list_screen.dart';
               const SizedBox(height: 10),
               RoundedTextField(
                 hint: 'Gasto',
-                onTextChanged: (newExpenseName) => expenseName = newExpenseName,
+                onTextChange: (newExpenseName) => expenseName = newExpenseName,
               ),
               const SizedBox(height: 10),
               RoundedTextField(
                 hint: 'Valor',
-                onTextChanged: (newExpenseAmount) => expenseAmount = newExpenseAmount,
+                onTextChange: (newExpenseAmount) => expenseAmount = newExpenseAmount,
               ),
               const SizedBox(height: 10),
               RoundedTextField(
                 hint: 'Moeda Original',
-                onTextChanged: (newExpenseCurrency) => expenseCurrency = newExpenseCurrency,
+                onTextChange: (newExpenseCurrency) => expenseCurrency = newExpenseCurrency,
               ),
               const SizedBox(height: 10),
               RoundedTextField(
                 hint: 'Moeda a Converter',
-                onTextChanged: (newExpenseNewCurrency) => expenseNewCurrency = newExpenseNewCurrency,
+                onTextChange: (newExpenseNewCurrency) => expenseNewCurrency = newExpenseNewCurrency,
               ),
               const SizedBox(height: 10),
               RoundedTextField(
                 hint: 'Valor Convertido',
-                onTextChanged: (newExpenseConvertedAmount) => expenseConvertedAmount = newExpenseConvertedAmount,
+                onTextChange: (newExpenseConvertedAmount) => expenseConvertedAmount = newExpenseConvertedAmount,
               ),
               const SizedBox(height: 10),
               RoundedButton(
                 text: 'Salvar', onPressed: () {
-                Navigator.pushReplacementNamed(context, ListScreen.id);
-
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const ListScreen()));
               },
 
+            ),
+              const SizedBox(height: 10),
+              RoundedButton(
+                text: 'Logout', onPressed: () => _signOut(),
               ),
             ],
           ),
@@ -75,4 +80,13 @@ import 'package:scjr1_projeto_final_mobile/screens/list_screen.dart';
       );
     }
 
+    Future<void> _signOut() async {
+      await FirebaseAuth.instance.signOut().then((value) => {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => LoginScreen()),
+        )
+      });
+
+    }
   }

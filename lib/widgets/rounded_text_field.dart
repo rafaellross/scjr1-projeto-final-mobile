@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 
 class RoundedTextField extends StatelessWidget {
   const RoundedTextField({
-    Key? key,
-    required this.onTextChanged,
-    this.hint = '',
-  }) : super (key: key);
+    super.key,
+    required this.hint,
+    required this.onTextChange,
+    this.textInputType = TextInputType.text,
+    this.obscureText = false,
+  });
 
   final String hint;
-  final Function(String) onTextChanged;
+  final TextInputType textInputType;
+  final bool obscureText;
+  final Function(String) onTextChange;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +21,8 @@ class RoundedTextField extends StatelessWidget {
         color: Colors.white,
       ),
 
-      onChanged: onTextChanged,
+      onChanged: onTextChange,
+      obscureText: obscureText,
       decoration: InputDecoration(
         labelText: hint,
         labelStyle: const TextStyle(
