@@ -7,6 +7,7 @@ import 'package:scjr1_projeto_final_mobile/screens/splash_screen.dart';
 
 import 'firebase_options.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Controle de Gastos',
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
@@ -32,7 +33,6 @@ class MyApp extends StatelessWidget {
         LoginScreen.id: (context) => LoginScreen(),
         RegisterScreen.id: (context) => RegisterScreen(),
         SplashScreen.id: (context) => const SplashScreen(),
-
       },
     );
   }

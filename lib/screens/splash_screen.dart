@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:scjr1_projeto_final_mobile/screens/expense_screen.dart';
 import 'package:scjr1_projeto_final_mobile/screens/login_screen.dart';
+import 'package:scjr1_projeto_final_mobile/screens/register_screen.dart';
 
 import 'expense_screen.dart';
 
@@ -16,10 +18,11 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
 
+  final FirebaseAuth auth = FirebaseAuth.instance;
+
   @override
   void initState() {
     super.initState();
-
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     _checkCurrentUser();
   }
@@ -37,6 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void _checkCurrentUser() async {
 
+
     final User? user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {
@@ -46,6 +50,7 @@ class _SplashScreenState extends State<SplashScreen> {
         MaterialPageRoute(builder: (context) => ExpenseScreen()),
       );
     } else {
+
       Future.delayed(const Duration(seconds: 2)).then((_){
         Navigator.pushReplacement(
           context,

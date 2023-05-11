@@ -14,7 +14,9 @@ import 'package:flutter/foundation.dart'
 ///   options: DefaultFirebaseOptions.currentPlatform,
 /// );
 /// ```
+
 class DefaultFirebaseOptions {
+
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
       return web;
@@ -44,6 +46,7 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
+
     apiKey: 'AIzaSyConCN0P-EQyWTeLT6oxJYNT9qKkmLudc8',
     appId: '1:760979832619:web:d9c2015c209332f47a8f6e',
     messagingSenderId: '760979832619',
@@ -71,6 +74,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
+
     apiKey: 'AIzaSyAD1tC5rPHevXMdCKRpjpof34xQy9agshU',
     appId: '1:760979832619:ios:6814f8a8a250a8f27a8f6e',
     messagingSenderId: '760979832619',

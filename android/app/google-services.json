@@ -7,6 +7,7 @@
   "client": [
     {
       "client_info": {
+
         "mobilesdk_app_id": "1:760979832619:android:b5048045b2d453957a8f6e",
         "android_client_info": {
           "package_name": "br.com.fiap.scjr1_projeto_final_mobile"

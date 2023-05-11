@@ -12,8 +12,8 @@ class LoginScreen extends StatelessWidget {
 
   LoginScreen({super.key});
 
-  var userEmail = 'rafaellross@gmail.com';
-  var userPassword = '123456';
+  var userEmail = '';
+  var userPassword = '';
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +31,7 @@ class LoginScreen extends StatelessWidget {
               ),
               const Text(
                 'Login',
+
                 style: TextStyle(
                     fontSize: 32,
                     color: Colors.white
@@ -68,6 +69,7 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
+
   void authenticateUser(BuildContext context) {
     final firebaseAuth = FirebaseAuth.instance;
 
@@ -81,6 +83,7 @@ class LoginScreen extends StatelessWidget {
         Navigator.pushReplacementNamed(context, ExpenseScreen.id);
       },
     ).onError(
+
           (FirebaseAuthException error, stackTrace) {
 
             ScaffoldMessenger.of(context).showSnackBar(
@@ -92,17 +95,5 @@ class LoginScreen extends StatelessWidget {
             );
         }
     );
-  }
-
-  void makeRegister(BuildContext context, String email, String password) async {
-    try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      //Navigator.pushReplacementNamed(context, MoviesScreen.id);
-    } catch (error) {
-      print(error);
-    }
   }
 }

@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:scjr1_projeto_final_mobile/screens/expense_screen.dart';
+
 import 'package:scjr1_projeto_final_mobile/screens/login_screen.dart';
 import '../widgets/rounded_button.dart';
 import '../widgets/rounded_text_field.dart';
@@ -17,7 +18,6 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.blueAccent,
       body: SafeArea(
@@ -30,6 +30,7 @@ class RegisterScreen extends StatelessWidget {
                 child: Image.asset('assets/images/log_background.png',),
               ),
               const Text(
+
                 'Cadastro',
                 style: TextStyle(
                   fontSize: 32,
@@ -60,11 +61,13 @@ class RegisterScreen extends StatelessWidget {
               ),
 
             ],
+
           ),
         ),
       ),
     );
   }
+
 
   void registerUser(BuildContext context) {
     final firebaseAuth = FirebaseAuth.instance;
