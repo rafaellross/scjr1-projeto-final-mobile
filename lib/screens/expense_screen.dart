@@ -5,7 +5,7 @@ import 'package:scjr1_projeto_final_mobile/screens/list_screen.dart';
   import '../widgets/rounded_text_field.dart';
 
   class ExpenseScreen extends StatefulWidget {
-    static const String id = '/splash_screen';
+    static const String id = '/expense_screen';
 
     const ExpenseScreen({super.key});
 
@@ -63,7 +63,7 @@ import 'package:scjr1_projeto_final_mobile/screens/list_screen.dart';
               const SizedBox(height: 10),
               RoundedButton(
                 text: 'Salvar', onPressed: () {
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const ListScreen()));
+                Navigator.pushReplacementNamed(context, ListScreen.id);
 
               },
 

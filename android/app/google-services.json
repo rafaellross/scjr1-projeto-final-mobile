@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "440218767357",
+    "project_id": "scjr1-final-mobile",
+    "storage_bucket": "scjr1-final-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:440218767357:android:d42e8a0d2904aa42fcd394",
+        "android_client_info": {
+          "package_name": "br.com.fiap.scjr1_projeto_final_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "440218767357-2p7cqk4ipjipnj3ftrfscodq2l1c84h1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7GZfz3hw3YC_wSxob3OQi69ZVAa5a6qU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "440218767357-2p7cqk4ipjipnj3ftrfscodq2l1c84h1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
