@@ -36,8 +36,8 @@ import 'login_screen.dart';
            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                child: Image.asset('assets/images/log_background.png',),
-             height: 80,
+                height: 80,
+                child: Image.asset('assets/images/log_background.png')
               ),
               const SizedBox(height: 10),
               RoundedTextField(

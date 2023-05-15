@@ -44,7 +44,8 @@ class _ListScreenState extends State<ListScreen> {
                   final expense = _expenses[index];
                   var f = NumberFormat("###.00", "pt_BR");
                   return ListTile(
-                    textColor: Colors.white,
+                    tileColor: Colors.white,
+                    textColor: Colors.black,
                     title: Text(expense.expenseName, style: const TextStyle(
                       fontWeight: FontWeight.bold
                     ),),
@@ -54,7 +55,7 @@ class _ListScreenState extends State<ListScreen> {
                       children: [
                         IconButton(
                             icon: const Icon(Icons.delete),
-                            color: Colors.white,
+                            color: Colors.black,
                             onPressed: () => showDialog<String>(
                             context: context,
                             builder: (BuildContext context) => AlertDialog(
