@@ -1,13 +1,13 @@
 # Gastos Financeiros
 Este projeto é uma aplicação móvel para armazenar os gastos financeiros do usuário. A aplicação permite que o usuário adicione, edite e exclua gastos e visualize um resumo dos seus gastos em um gráfico.
 
-# Tecnologias
+## Tecnologias
 A aplicação foi desenvolvida utilizando o framework Flutter e as seguintes tecnologias:
 
 Firebase Authentication: utilizado para autenticação de usuários
 SQLite: utilizado para armazenamento local dos dados de gastos
 
-# Layout
+## Layout
 O layout da aplicação segue o estilo Material Design do Flutter e é composto pelas seguintes telas:
 
 Tela de Login: onde o usuário pode fazer login
