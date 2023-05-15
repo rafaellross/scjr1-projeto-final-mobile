@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:scjr1_projeto_final_mobile/screens/expense_screen.dart';
+import 'package:scjr1_projeto_final_mobile/screens/list_screen.dart';
 import 'package:scjr1_projeto_final_mobile/screens/login_screen.dart';
 import 'package:scjr1_projeto_final_mobile/screens/register_screen.dart';
 import 'package:scjr1_projeto_final_mobile/screens/splash_screen.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         LoginScreen.id: (context) => LoginScreen(),
         RegisterScreen.id: (context) => RegisterScreen(),
         SplashScreen.id: (context) => const SplashScreen(),
+        ListScreen.id: (context) => const ListScreen(),
       },
     );
   }
