@@ -49,7 +49,13 @@ import 'login_screen.dart';
               RoundedTextField(
                 hint: 'Valor',
                 textInputType: const TextInputType.numberWithOptions(decimal: true),
-                onTextChange: (newExpenseAmount) => expenseAmount = newExpenseAmount as double,
+                onTextChange: (newExpenseAmount) {
+                  if (newExpenseAmount.isNotEmpty) {
+                    expenseAmount = double.parse(newExpenseAmount);
+                  } else {
+                    expenseAmount = 0.0;
+                  }
+                },
               ),
               const SizedBox(height: 10),
               RoundedTextField(
@@ -64,8 +70,13 @@ import 'login_screen.dart';
               const SizedBox(height: 10),
               RoundedTextField(
                 hint: 'Valor Convertido',
-                onTextChange: (newExpenseConvertedAmount) => expenseConvertedAmount = newExpenseConvertedAmount as double,
-              ),
+                onTextChange: (newExpenseAmount) {
+                  if (newExpenseAmount.isNotEmpty) {
+                    expenseConvertedAmount = double.parse(newExpenseAmount);
+                  } else {
+                    expenseConvertedAmount = 0.0;
+                  }
+                },              ),
               const SizedBox(height: 10),
               RoundedButton(
                 text: 'Salvar',
