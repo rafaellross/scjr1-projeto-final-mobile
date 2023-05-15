@@ -1,17 +1,17 @@
-# scjr1_projeto_final_mobile
+# Gastos Financeiros
+Este projeto é uma aplicação móvel para armazenar os gastos financeiros do usuário. A aplicação permite que o usuário adicione, edite e exclua gastos e visualize um resumo dos seus gastos em um gráfico.
 
-    Projeto final Mobile
+# Tecnologias
+A aplicação foi desenvolvida utilizando o framework Flutter e as seguintes tecnologias:
 
-## Getting Started
+Firebase Authentication: utilizado para autenticação de usuários
+SQLite: utilizado para armazenamento local dos dados de gastos
 
-This project is a starting point for a Flutter application.
+# Layout
+O layout da aplicação segue o estilo Material Design do Flutter e é composto pelas seguintes telas:
 
-A few resources to get you started if this is your first Flutter project:
+Tela de Login: onde o usuário pode fazer login
+Tela de Cadastro: onde o usuário pode criar uma nova conta
+Tela Principal: onde o usuário pode adicionar seus gastos
+Tela Lista de Gastos: onde o usuário pode visualizar os seus gastos
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-"# scjr1-projeto-final-mobile" 
