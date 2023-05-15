@@ -20,28 +20,28 @@ class DBProvider {
 
   initDB() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, "expenses_database.db");
+    String path = join(documentsDirectory.path, "expenses_db.db");
 
     return await openDatabase(path, version: 1, onOpen: (db) {},
         onCreate: (Database db, int version) async {
-          await db.execute("CREATE TABLE IF NOT EXISTS EXPENSE ("
-              "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-              "expense_name TEXT,"
-              "expense_amount REAL,"
-              "expense_currency TEXT,"
-              "expense_new_currency TEXT,"
-              "expense_converted_amount REAL"
-              ")");
+
+        await db.execute("CREATE TABLE IF NOT EXISTS EXPENSE ("
+            "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+            "expense_name TEXT,"
+            "expense_amount REAL,"
+            "expense_date TEXT"
+            ")");
         });
   }
 
   newExpense(ExpenseModel newExpense) async {
     final db = await database;
+
     //insert to the table using the new id
     var raw = await db.rawInsert(
-        "INSERT Into EXPENSE (expense_name,expense_amount,expense_currency, expense_new_currency, expense_converted_amount)"
-            " VALUES (?,?,?,?,?)",
-        [newExpense.expenseName, newExpense.expenseAmount, newExpense.expenseCurrency, newExpense.expenseNewCurrency, newExpense.expenseConvertedAmount]);
+        "INSERT Into EXPENSE (expense_name,expense_amount,expense_date)"
+            " VALUES (?,?,?)",
+        [newExpense.expenseName, newExpense.expenseAmount, newExpense.expenseDate.toString()]);
     return raw;
   }
 
@@ -60,9 +60,10 @@ class DBProvider {
     return list;
   }
 
-  deleteExpense(int id) async {
+  deleteExpense(ExpenseModel expense) async {
+    print(expense.id);
     final db = await database;
-    return db.delete("EXPENSE", where: "id = ?", whereArgs: [id]);
+    return db.delete("EXPENSE", where: "id = ?", whereArgs: [expense.id]);
   }
 
   deleteAll() async {

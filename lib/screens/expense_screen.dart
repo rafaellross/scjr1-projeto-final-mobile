@@ -1,5 +1,6 @@
   import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:scjr1_projeto_final_mobile/model/expense_model.dart';
 import 'package:scjr1_projeto_final_mobile/screens/list_screen.dart';
 
@@ -19,16 +20,14 @@ import 'login_screen.dart';
 
   class _ExpenseScreenState extends State<ExpenseScreen> {
 
-    String expenseName = '';
-    double expenseAmount = 0.00;
-    String expenseCurrency = '';
-    String expenseNewCurrency = '';
-    double expenseConvertedAmount = 0.00;
-
+    late String expenseName;
+    late double expenseAmount;
+    TextEditingController _dateController = TextEditingController();
+    DateTime _selectedDate = DateTime.now();
 
     @override
     Widget build(BuildContext context) {
-
+      _dateController.text = DateFormat('dd/MM/yyyy').format(_selectedDate);
       return Scaffold(
           backgroundColor: Colors.blueAccent,
         body: SafeArea(child: Padding(
@@ -58,29 +57,41 @@ import 'login_screen.dart';
                 },
               ),
               const SizedBox(height: 10),
-              RoundedTextField(
-                hint: 'Moeda Original',
-                onTextChange: (newExpenseCurrency) => expenseCurrency = newExpenseCurrency,
-              ),
-              const SizedBox(height: 10),
-              RoundedTextField(
-                hint: 'Moeda a Converter',
-                onTextChange: (newExpenseNewCurrency) => expenseNewCurrency = newExpenseNewCurrency,
-              ),
-              const SizedBox(height: 10),
-              RoundedTextField(
-                hint: 'Valor Convertido',
-                onTextChange: (newExpenseAmount) {
-                  if (newExpenseAmount.isNotEmpty) {
-                    expenseConvertedAmount = double.parse(newExpenseAmount);
-                  } else {
-                    expenseConvertedAmount = 0.0;
+              TextFormField(
+                style: const TextStyle(
+                  color: Colors.white,
+                ),
+
+                controller: _dateController,
+                decoration: InputDecoration(
+                  hintText: 'Selecione a data',
+                  labelStyle: const TextStyle(
+                      color: Colors.white
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(1000),
+
+                  ),
+
+                ),
+                onTap: () async {
+                  _selectedDate = (await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(1900),
+                    lastDate: DateTime(2100),
+
+                  ))!;
+
+                  if (_selectedDate != null) {
+                    _dateController.text = DateFormat.yMd().format(_selectedDate);
                   }
-                },              ),
+                },
+              ),
               const SizedBox(height: 10),
               RoundedButton(
                 text: 'Salvar',
-                onPressed: () => saveExpense(ExpenseModel(expenseName: expenseName, expenseAmount: expenseAmount, expenseCurrency: expenseCurrency, expenseNewCurrency: expenseNewCurrency, expenseConvertedAmount: expenseConvertedAmount))
+                onPressed: () => saveExpense(ExpenseModel(expenseName: expenseName, expenseAmount: expenseAmount, expenseDate: _selectedDate))
             ),
               const SizedBox(height: 10),
               RoundedButton(
@@ -106,6 +117,7 @@ import 'login_screen.dart';
     }
 
     Future<void> saveExpense(ExpenseModel newEXpense) async {
+      print(newEXpense.expenseDate);
       await DBProvider.db.newExpense(newEXpense);
       Future.delayed(const Duration(seconds: 1)).then((_){
         Navigator.pushReplacement(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:scjr1_projeto_final_mobile/model/expense_model.dart';
 import 'package:scjr1_projeto_final_mobile/screens/expense_screen.dart';
 
@@ -29,14 +30,6 @@ class _ListScreenState extends State<ListScreen> {
 
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 1,
-        leading: BackButton(
-          color: Theme.of(context).secondaryHeaderColor,
-          onPressed: () => Navigator.pop(context),
-        ),
-      ),
       backgroundColor: Colors.blueAccent,
       body: SafeArea(
         child: Column(
@@ -44,68 +37,52 @@ class _ListScreenState extends State<ListScreen> {
             Expanded(
               child: ListView.separated(
                 padding: const EdgeInsets.all(16),
+
                 itemCount: _expenses.length,
                 separatorBuilder: (_, __) => const SizedBox(height: 8),
                 itemBuilder: (context, index) {
                   final expense = _expenses[index];
-                  return Material(
-                    elevation: 8,
-                    borderRadius: BorderRadius.circular(8),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          const SizedBox(width: 8),
-                          Expanded(
-                            flex: 3,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  expense.expenseName,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                  var f = NumberFormat("###.00", "pt_BR");
+                  return ListTile(
+                    textColor: Colors.white,
+                    title: Text(expense.expenseName, style: const TextStyle(
+                      fontWeight: FontWeight.bold
+                    ),),
+                    subtitle: Text("R\$ ${f.format(expense.expenseAmount)}"),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                            icon: const Icon(Icons.delete),
+                            color: Colors.white,
+                            onPressed: () => showDialog<String>(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              title: const Text('Apagar Gasto'),
+                              content: const Text('Tem certeza que deseja excluir gasto?'),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () => Navigator.pop(context, 'Cancel'),
+                                  child: const Text('Cancelar'),
                                 ),
-                                const SizedBox(height: 8),
-                                Text(
-                                  "Moeda Original: ${expense.expenseCurrency}",
-                                  maxLines: 4,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                const SizedBox(height: 8),
-                                Text(
-                                  "Valor Original: ${expense.expenseAmount}",
-                                  maxLines: 4,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                const SizedBox(height: 8),
-                                Text(
-                                  "Moeda Convertida: ${expense.expenseNewCurrency}",
-                                  maxLines: 4,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                const SizedBox(height: 8),
-                                Text(
-                                  "Valor Convertido: ${expense.expenseConvertedAmount}",
-                                  maxLines: 4,
-                                  overflow: TextOverflow.ellipsis,
+                                TextButton(
+                                  onPressed: () {
+                                    _deleteExpense(expense);
+                                    Navigator.pop(context, 'Excluir');
+                                  },
+                                  child: const Text('Excluir'),
                                 ),
                               ],
                             ),
                           ),
-                          const SizedBox(width: 8),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   );
                 },
               ),
             ),
-            SizedBox(height: 16), // Espaçamento entre o botão e o final da tela
+            const SizedBox(height: 16), // Espaçamento entre o botão e o final da tela
             Padding(
               padding: const EdgeInsets.all(16.0), // Espaçamento em todos os lados do botão
               child: RoundedButton(
@@ -121,6 +98,11 @@ class _ListScreenState extends State<ListScreen> {
     );
   }
 
+  Future<void> _deleteExpense(ExpenseModel expense) async {
+    await DBProvider.db.deleteExpense(expense);
+    _loadExpenses();
+  }
+  
   Future<void> _loadExpenses() async {
     final expenses = await DBProvider.db.getAllExpenses();
     setState(() {
