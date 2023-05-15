@@ -44,6 +44,7 @@ class _ListScreenState extends State<ListScreen> {
                   final expense = _expenses[index];
                   var f = NumberFormat("###.00", "pt_BR");
                   return ListTile(
+                    leading: expense.expensePaid ? Icon(Icons.done, color: Colors.green) : Icon(Icons.cancel, color: Colors.red,),
                     tileColor: Colors.white,
                     textColor: Colors.black,
                     title: Text(expense.expenseName, style: const TextStyle(

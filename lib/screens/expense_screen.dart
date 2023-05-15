@@ -24,6 +24,7 @@ import 'login_screen.dart';
     late double expenseAmount;
     TextEditingController _dateController = TextEditingController();
     DateTime _selectedDate = DateTime.now();
+    bool _isPaid = false;
 
     @override
     Widget build(BuildContext context) {
@@ -89,9 +90,32 @@ import 'login_screen.dart';
                 },
               ),
               const SizedBox(height: 10),
+
+              const SizedBox(height: 10),
+              Row(
+                children: [
+                  Checkbox(
+                    value: _isPaid,
+                    onChanged: (bool? value) {
+                      setState(() {
+                        _isPaid = value ?? false;
+                      });
+                    },
+                    checkColor: Colors.white,
+                    materialTapTargetSize: MaterialTapTargetSize.padded,
+                  ),
+                  const Text(
+                    'Pago?',
+                    style: TextStyle(
+                        color: Colors.white
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
               RoundedButton(
                 text: 'Salvar',
-                onPressed: () => saveExpense(ExpenseModel(expenseName: expenseName, expenseAmount: expenseAmount, expenseDate: _selectedDate))
+                onPressed: () => saveExpense(ExpenseModel(expenseName: expenseName, expenseAmount: expenseAmount, expenseDate: _selectedDate, expensePaid: _isPaid))
             ),
               const SizedBox(height: 10),
               RoundedButton(
@@ -117,7 +141,8 @@ import 'login_screen.dart';
     }
 
     Future<void> saveExpense(ExpenseModel newEXpense) async {
-      print(newEXpense.expenseDate);
+      print("Expense paid");
+      print(newEXpense.expensePaid);
       await DBProvider.db.newExpense(newEXpense);
       Future.delayed(const Duration(seconds: 1)).then((_){
         Navigator.pushReplacement(

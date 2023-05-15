@@ -20,7 +20,7 @@ class DBProvider {
 
   initDB() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, "expenses_db.db");
+    String path = join(documentsDirectory.path, "expenses_data.db");
 
     return await openDatabase(path, version: 1, onOpen: (db) {},
         onCreate: (Database db, int version) async {
@@ -29,7 +29,8 @@ class DBProvider {
             "id INTEGER PRIMARY KEY AUTOINCREMENT,"
             "expense_name TEXT,"
             "expense_amount REAL,"
-            "expense_date TEXT"
+            "expense_date TEXT,"
+            "expense_paid INTEGER"
             ")");
         });
   }
@@ -39,17 +40,10 @@ class DBProvider {
 
     //insert to the table using the new id
     var raw = await db.rawInsert(
-        "INSERT Into EXPENSE (expense_name,expense_amount,expense_date)"
-            " VALUES (?,?,?)",
-        [newExpense.expenseName, newExpense.expenseAmount, newExpense.expenseDate.toString()]);
+        "INSERT Into EXPENSE (expense_name,expense_amount,expense_date,expense_paid)"
+            " VALUES (?,?,?,?)",
+        [newExpense.expenseName, newExpense.expenseAmount, newExpense.expenseDate.toString(), newExpense.expensePaid]);
     return raw;
-  }
-
-  updateExpense(ExpenseModel newExpense) async {
-    final db = await database;
-    var res = await db.update("EXPENSE", newExpense.toMap(),
-        where: "id = ?", whereArgs: [newExpense.id]);
-    return res;
   }
 
   Future<List<ExpenseModel>> getAllExpenses() async {
@@ -66,8 +60,4 @@ class DBProvider {
     return db.delete("EXPENSE", where: "id = ?", whereArgs: [expense.id]);
   }
 
-  deleteAll() async {
-    final db = await database;
-    db.rawDelete("DELETE FROM EXPENSE");
-  }
 }
