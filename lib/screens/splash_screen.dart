@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:scjr1_projeto_final_mobile/screens/expense_screen.dart';
+import 'package:scjr1_projeto_final_mobile/screens/list_screen.dart';
 import 'package:scjr1_projeto_final_mobile/screens/login_screen.dart';
 import 'package:scjr1_projeto_final_mobile/screens/register_screen.dart';
 
@@ -45,10 +46,13 @@ class _SplashScreenState extends State<SplashScreen> {
 
     if (user != null) {
 
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => ExpenseScreen()),
-      );
+      Future.delayed(const Duration(seconds: 2)).then((_){
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const ListScreen()),
+        );
+      });
+
     } else {
 
       Future.delayed(const Duration(seconds: 2)).then((_){

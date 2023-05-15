@@ -1,8 +1,10 @@
   import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:scjr1_projeto_final_mobile/model/expense_model.dart';
 import 'package:scjr1_projeto_final_mobile/screens/list_screen.dart';
 
-  import '../widgets/rounded_button.dart';
+  import '../database_provider.dart';
+import '../widgets/rounded_button.dart';
   import '../widgets/rounded_text_field.dart';
 import 'login_screen.dart';
 
@@ -17,14 +19,15 @@ import 'login_screen.dart';
 
   class _ExpenseScreenState extends State<ExpenseScreen> {
 
+    String expenseName = '';
+    double expenseAmount = 0.00;
+    String expenseCurrency = '';
+    String expenseNewCurrency = '';
+    double expenseConvertedAmount = 0.00;
+
+
     @override
     Widget build(BuildContext context) {
-
-      var expenseName = '';
-      var expenseAmount = '';
-      var expenseCurrency = '';
-      var expenseNewCurrency = '';
-      var expenseConvertedAmount = '';
 
       return Scaffold(
           backgroundColor: Colors.blueAccent,
@@ -45,7 +48,8 @@ import 'login_screen.dart';
               const SizedBox(height: 10),
               RoundedTextField(
                 hint: 'Valor',
-                onTextChange: (newExpenseAmount) => expenseAmount = newExpenseAmount,
+                textInputType: const TextInputType.numberWithOptions(decimal: true),
+                onTextChange: (newExpenseAmount) => expenseAmount = newExpenseAmount as double,
               ),
               const SizedBox(height: 10),
               RoundedTextField(
@@ -60,24 +64,45 @@ import 'login_screen.dart';
               const SizedBox(height: 10),
               RoundedTextField(
                 hint: 'Valor Convertido',
-                onTextChange: (newExpenseConvertedAmount) => expenseConvertedAmount = newExpenseConvertedAmount,
+                onTextChange: (newExpenseConvertedAmount) => expenseConvertedAmount = newExpenseConvertedAmount as double,
               ),
               const SizedBox(height: 10),
               RoundedButton(
-                text: 'Salvar', onPressed: () {
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const ListScreen()));
-              },
-
+                text: 'Salvar',
+                onPressed: () => saveExpense(ExpenseModel(expenseName: expenseName, expenseAmount: expenseAmount, expenseCurrency: expenseCurrency, expenseNewCurrency: expenseNewCurrency, expenseConvertedAmount: expenseConvertedAmount))
             ),
               const SizedBox(height: 10),
               RoundedButton(
+                text: 'Ver Gastos',
+                onPressed: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ListScreen())),
+                backgroundColor: Colors.white,
+                textColor: Colors.teal,
+
+              ),
+
+              const SizedBox(height: 10),
+              RoundedButton(
                 text: 'Logout', onPressed: () => _signOut(),
+                backgroundColor: Colors.white,
+                textColor: Colors.teal,
+
               ),
             ],
           ),
         ),
         ),
       );
+    }
+
+    Future<void> saveExpense(ExpenseModel newEXpense) async {
+      await DBProvider.db.newExpense(newEXpense);
+      Future.delayed(const Duration(seconds: 1)).then((_){
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const ListScreen()),
+        );
+      });
+
     }
 
     Future<void> _signOut() async {

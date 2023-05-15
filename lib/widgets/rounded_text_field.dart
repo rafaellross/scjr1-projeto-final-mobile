@@ -7,12 +7,14 @@ class RoundedTextField extends StatelessWidget {
     required this.onTextChange,
     this.textInputType = TextInputType.text,
     this.obscureText = false,
+
   });
 
   final String hint;
   final TextInputType textInputType;
   final bool obscureText;
   final Function(String) onTextChange;
+
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +24,7 @@ class RoundedTextField extends StatelessWidget {
       ),
 
       onChanged: onTextChange,
+      keyboardType: textInputType,
       obscureText: obscureText,
       decoration: InputDecoration(
         labelText: hint,
