@@ -22,11 +22,12 @@ class LoginScreen extends StatelessWidget {
       backgroundColor: Colors.blueAccent,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
+                height: 170,
                 child: Image.asset('assets/images/log_background.png',),
               ),
               const Text(

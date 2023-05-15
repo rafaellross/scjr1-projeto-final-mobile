@@ -27,6 +27,7 @@ class RegisterScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
+                height: 170,
                 child: Image.asset('assets/images/log_background.png',),
               ),
               const Text(

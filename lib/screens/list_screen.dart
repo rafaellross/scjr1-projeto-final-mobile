@@ -49,7 +49,32 @@ class _ListScreenState extends State<ListScreen> {
                     title: Text(expense.expenseName, style: const TextStyle(
                       fontWeight: FontWeight.bold
                     ),),
-                    subtitle: Text("R\$ ${f.format(expense.expenseAmount)}"),
+                    subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 5),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 3.0), // Espaçamento abaixo do primeiro Text
+                        child: Text(
+                          "Valor: R\$ ${f.format(expense.expenseAmount)}",
+                          style: const TextStyle(
+                            fontSize: 14,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 3.0), // Espaçamento abaixo do segundo Text
+                        child: Text(
+                          'Data: ${DateFormat('dd/MM/yyyy').format(expense.expenseDate)}',
+                          style: const TextStyle(
+                            fontSize: 14,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
