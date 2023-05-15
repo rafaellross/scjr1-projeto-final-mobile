@@ -47,6 +47,7 @@ class RegisterScreen extends StatelessWidget {
               RoundedTextField(
                 hint: 'Senha',
                 onTextChange: (newPassword) => userPassword = newPassword,
+                obscureText: true,
               ),
               const SizedBox(height: 32.0),
               RoundedButton(

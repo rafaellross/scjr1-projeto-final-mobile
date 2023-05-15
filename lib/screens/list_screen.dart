@@ -1,6 +1,8 @@
   import 'package:flutter/material.dart';
 import 'package:scjr1_projeto_final_mobile/model/expense_model.dart';
 
+import '../database_provider.dart';
+
   class ListScreen extends StatefulWidget {
     static const String id = '/splash_screen';
 
@@ -11,35 +13,19 @@ import 'package:scjr1_projeto_final_mobile/model/expense_model.dart';
   }
 
   class _ListScreenState extends State<ListScreen> {
-
+    List<ExpenseModel> _expenses = [];
 
 
     @override
-    Widget build(BuildContext context) {
-      final List<ExpenseModel> expenseList = [
-        const ExpenseModel (
-            expenseName: "expenseName",
-            expenseAmount: 100.00,
-            expenseCurrency: "USD",
-            expenseNewCurrency: "BRL",
-            expenseConvertedAmount: 500.00
-        ),
-        const ExpenseModel (
-            expenseName: "expenseName",
-            expenseAmount: 100.00,
-            expenseCurrency: "USD",
-            expenseNewCurrency: "BRL",
-            expenseConvertedAmount: 500.00
-        ),
-        const ExpenseModel (
-            expenseName: "expenseName",
-            expenseAmount: 100.00,
-            expenseCurrency: "USD",
-            expenseNewCurrency: "BRL",
-            expenseConvertedAmount: 500.00
-        ),
+  void initState() {
+    super.initState();
+    _loadExpenses();
+  }
 
-      ];
+  @override
+    Widget build(BuildContext context) {
+
+
       return Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.transparent,
@@ -54,10 +40,10 @@ import 'package:scjr1_projeto_final_mobile/model/expense_model.dart';
         body: SafeArea(
           child: ListView.separated(
             padding: const EdgeInsets.all(16),
-            itemCount: expenseList.length,
+            itemCount: _expenses.length,
             separatorBuilder: (_, __) => const SizedBox(height: 8),
             itemBuilder: (context, index) {
-              final expense = expenseList[index];
+              final expense = _expenses[index];
               return Material(
                 elevation: 8,
                 borderRadius: BorderRadius.circular(8),
@@ -82,7 +68,7 @@ import 'package:scjr1_projeto_final_mobile/model/expense_model.dart';
                             ),
                             const SizedBox(height: 8),
                             Text(
-                              expense.expenseCurrency,
+                              "Moeda Original: ${expense.expenseCurrency}",
                               maxLines: 4,
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -98,5 +84,12 @@ import 'package:scjr1_projeto_final_mobile/model/expense_model.dart';
           ),
         )
       );
+    }
+
+    Future<void> _loadExpenses() async {
+      final expenses = await DBProvider.db.getAllExpenses();
+      setState(() {
+        _expenses = expenses;
+      });
     }
   }
